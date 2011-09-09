@@ -39,7 +39,7 @@ class CertHandler(gobject.GObject, Nautilus.MenuProvider):
         while attempts < 3 and not valid:
             password = self._ask_for_password(file.get_name(), print_warning)
             if password:
-                valid = self.add_user_certificate(file.get_name(), password)
+                valid = self.add_user_certificate(filename, password)
                 attempts += 1
                 print_warning = True
             else:
