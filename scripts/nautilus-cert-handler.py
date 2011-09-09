@@ -22,6 +22,16 @@ class CertHandler(gobject.GObject, Nautilus.MenuProvider):
             return
         
         # Strip leading file://
+        if self.is_firefox_running():
+            msg = _('It was not possible install any certificate because firefox is running. Pleas close Firefox and retry')
+            dialog = Gtk.MessageDialog(None, 0, Gtk.MessageType.ERROR,
+                                       Gtk.ButtonsType.CLOSE, msg)
+            dialog.set_title(_('Error'))
+            dialog.set_position(Gtk.WindowPosition.CENTER)
+            dialog.run()
+            dialog.destroy()
+            return False
+
         filename = urllib.unquote(file.get_uri()[7:])
         attempts = 0
         valid = False
