@@ -8,7 +8,7 @@ import ConfigParser
 import tempfile
 from gi.repository import Nautilus, Gtk
 
-FIREFOX_CMD  = '/usr/bin/firefox-firma'
+FIREFOX  = 'firefox-firma'
 PK12UTIL_CMD = '/usr/bin/pk12util'
 SUPPORTED_FORMATS = 'application/x-pkcs12'
 gettext.install("nautilus-cert-handler")
@@ -121,9 +121,12 @@ class CertHandler(gobject.GObject, Nautilus.MenuProvider):
         return status == 0
 
     def is_firefox_running(self):
-        cmd = '%s -remote "ping()"' % FIREFOX_CMD
-        status, output = commands.getstatusoutput(cmd)
-        return status == 0
+        cmd = 'ps -A'
+        status = False
+        output = commands.getoutput(cmd)
+        if FIREFOX in output:
+            status = True
+        return status
 
     def get_default_profile_dir(self):
         user_dir = os.path.expanduser('~')
