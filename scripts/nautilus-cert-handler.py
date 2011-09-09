@@ -48,14 +48,14 @@ class CertHandler(gobject.GObject, Nautilus.MenuProvider):
             msg = _('It was not possible to add the certificate %s because the password is not valid') % file.get_name()
             dialog = Gtk.MessageDialog(None, 0, Gtk.MessageType.ERROR,
                                        Gtk.ButtonsType.CLOSE, msg)
-            dialog.set_title(_('Error configuring %s') % self._name)
+            dialog.set_title(_('Error configuring %s') % file.get_name())
             dialog.set_position(Gtk.WindowPosition.CENTER)
             dialog.run()
             dialog.destroy()
         else:
             dialog = Gtk.MessageDialog(None, 0, Gtk.MessageType.INFO,
                                        Gtk.ButtonsType.CLOSE, _("The certificate %s has been installed") % file.get_name())
-            dialog.set_title(_('Certificate %s installed') % self._name)
+            dialog.set_title(_('Certificate %s installed') % file.get_name())
             dialog.set_position(Gtk.WindowPosition.CENTER)
             dialog.run()
             dialog.destroy()
@@ -86,7 +86,7 @@ class CertHandler(gobject.GObject, Nautilus.MenuProvider):
     def _ask_for_password(self, certificate, warn_user=False):
         dialog = Gtk.MessageDialog(None, 0, Gtk.MessageType.INFO,
                                    Gtk.ButtonsType.OK_CANCEL)
-        dialog.set_title(_('Configuring %s') % self._name)
+        dialog.set_title(_('Configuring %s') % certificate)
         dialog.set_position(Gtk.WindowPosition.CENTER)
         dialog.set_default_response(Gtk.Response.OK)
         dialog.set_markup(_('Insert your password to unlock the certificate from file <b>%s</b>') % certificate)
