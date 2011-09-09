@@ -1,3 +1,4 @@
+import commands
 import urllib
 import gettext
 import gconf
@@ -23,7 +24,7 @@ class CertHandler(gobject.GObject, Nautilus.MenuProvider):
         
         # Strip leading file://
         if self.is_firefox_running():
-            msg = _('It was not possible install any certificate because firefox is running. Pleas close Firefox and retry')
+            msg = _('It was not possible install any certificate because firefox is running. Please close Firefox and retry')
             dialog = Gtk.MessageDialog(None, 0, Gtk.MessageType.ERROR,
                                        Gtk.ButtonsType.CLOSE, msg)
             dialog.set_title(_('Error'))
@@ -88,7 +89,7 @@ class CertHandler(gobject.GObject, Nautilus.MenuProvider):
                                    Gtk.ButtonsType.OK_CANCEL)
         dialog.set_title(_('Configuring %s') % certificate)
         dialog.set_position(Gtk.WindowPosition.CENTER)
-        dialog.set_default_response(Gtk.Response.OK)
+        dialog.set_default_response(Gtk.ResponseType.OK)
         dialog.set_markup(_('Insert your password to unlock the certificate from file <b>%s</b>') % certificate)
         if warn_user:
             dialog.format_secondary_text(_('The password is not valid'))
@@ -96,11 +97,11 @@ class CertHandler(gobject.GObject, Nautilus.MenuProvider):
         entry.set_activates_default(True)
         entry.set_visibility(False) # this entry is for passwords
         entry.show()
-        parent = dialog.vbox.get_children()[0].get_children()[1]
-        parent.pack_start(entry, False, False)
+        parent = dialog.get_content_area().get_children()[0].get_children()[1]
+        parent.pack_start(entry, False, False, False)
         result = dialog.run()
         retval = None
-        if result == Gtk.Response_OK:
+        if result == Gtk.ResponseType.OK:
             retval = entry.get_text()
         dialog.destroy()
         return retval
@@ -143,8 +144,8 @@ class CertHandler(gobject.GObject, Nautilus.MenuProvider):
             default = profiles[0]
         else:
             for profile in profiles:
-                if (config.has_option(profile, 'Default') and
-                    config.get(profile, 'Default') == '1'):
+                if (config.has_option(profile, 'Name') and
+                    config.get(profile, 'Name') == 'firefox-firma'):
                     default = profile
 
         path = config.get(default, 'Path')
