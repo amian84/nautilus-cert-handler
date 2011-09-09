@@ -29,6 +29,7 @@ class CertHandler(gobject.GObject, Nautilus.MenuProvider):
                                        Gtk.ButtonsType.CLOSE, msg)
             dialog.set_title(_('Error'))
             dialog.set_position(Gtk.WindowPosition.CENTER)
+            dialog.set_icon_name('dialog-password')
             dialog.run()
             dialog.destroy()
             return False
@@ -51,6 +52,7 @@ class CertHandler(gobject.GObject, Nautilus.MenuProvider):
                                        Gtk.ButtonsType.CLOSE, msg)
             dialog.set_title(_('Error configuring %s') % file.get_name())
             dialog.set_position(Gtk.WindowPosition.CENTER)
+            dialog.set_icon_name('dialog-password')
             dialog.run()
             dialog.destroy()
         else:
@@ -58,6 +60,7 @@ class CertHandler(gobject.GObject, Nautilus.MenuProvider):
                                        Gtk.ButtonsType.CLOSE, _("The certificate %s has been installed") % file.get_name())
             dialog.set_title(_('Certificate %s installed') % file.get_name())
             dialog.set_position(Gtk.WindowPosition.CENTER)
+            dialog.set_icon_name('dialog-password')
             dialog.run()
             dialog.destroy()
 
@@ -80,7 +83,7 @@ class CertHandler(gobject.GObject, Nautilus.MenuProvider):
         item = Nautilus.MenuItem(name='Nautilus::cert_handler',
                                  label=_('Install certificate'),
                                  tip=_('Install selected certificate file to your Mozilla Firefox'),
-                                 icon='nautilus-cert-handler')
+                                 icon='dialog-password')
         item.connect('activate', self.menu_activate_cb, file)
         return item,
 
@@ -90,6 +93,7 @@ class CertHandler(gobject.GObject, Nautilus.MenuProvider):
         dialog.set_title(_('Configuring %s') % certificate)
         dialog.set_position(Gtk.WindowPosition.CENTER)
         dialog.set_default_response(Gtk.ResponseType.OK)
+        dialog.set_icon_name('dialog-password')
         dialog.set_markup(_('Insert your password to unlock the certificate from file <b>%s</b>') % certificate)
         if warn_user:
             dialog.format_secondary_text(_('The password is not valid'))
