@@ -9,7 +9,8 @@ import ConfigParser
 import tempfile
 from gi.repository import Nautilus, Gtk
 
-FIREFOX  = 'firefox-firma'
+FIREFOX_APP  = 'firefox-firma'
+FIREFOX_PROFILE = 'firefox-firma'
 PK12UTIL_CMD = '/usr/bin/pk12util'
 SUPPORTED_FORMATS = 'application/x-pkcs12'
 gettext.install("nautilus-cert-handler")
@@ -24,10 +25,11 @@ class CertHandler(gobject.GObject, Nautilus.MenuProvider):
         
         # Strip leading file://
         if self.is_firefox_running():
-            msg = _('It was not possible install any certificate because firefox is running. Please close Firefox and retry')
+            msg = _('It was not possible install any certificate because firefox is running.\nPlease close Firefox and retry')
             dialog = Gtk.MessageDialog(None, 0, Gtk.MessageType.ERROR,
                                        Gtk.ButtonsType.CLOSE, msg)
             dialog.set_title(_('Error'))
+            dialog.get_message_area().get_children()[0].set_size_request(500, -1)
             dialog.set_position(Gtk.WindowPosition.CENTER)
             dialog.set_icon_name('dialog-password')
             dialog.run()
@@ -51,6 +53,7 @@ class CertHandler(gobject.GObject, Nautilus.MenuProvider):
             dialog = Gtk.MessageDialog(None, 0, Gtk.MessageType.ERROR,
                                        Gtk.ButtonsType.CLOSE, msg)
             dialog.set_title(_('Error configuring %s') % file.get_name())
+            dialog.get_message_area().get_children()[0].set_size_request(500, -1)
             dialog.set_position(Gtk.WindowPosition.CENTER)
             dialog.set_icon_name('dialog-password')
             dialog.run()
@@ -60,6 +63,7 @@ class CertHandler(gobject.GObject, Nautilus.MenuProvider):
                                        Gtk.ButtonsType.CLOSE, _("The certificate %s has been installed") % file.get_name())
             dialog.set_title(_('Certificate %s installed') % file.get_name())
             dialog.set_position(Gtk.WindowPosition.CENTER)
+            dialog.get_message_area().get_children()[0].set_size_request(500, -1)
             dialog.set_icon_name('dialog-password')
             dialog.run()
             dialog.destroy()
@@ -94,6 +98,7 @@ class CertHandler(gobject.GObject, Nautilus.MenuProvider):
         dialog.set_position(Gtk.WindowPosition.CENTER)
         dialog.set_default_response(Gtk.ResponseType.OK)
         dialog.set_icon_name('dialog-password')
+        dialog.get_message_area().get_children()[0].set_size_request(500, -1)
         dialog.set_markup(_('Insert your password to unlock the certificate from file <b>%s</b>') % certificate)
         if warn_user:
             dialog.format_secondary_text(_('The password is not valid'))
@@ -129,7 +134,7 @@ class CertHandler(gobject.GObject, Nautilus.MenuProvider):
         cmd = 'ps -A'
         status = False
         output = commands.getoutput(cmd)
-        if FIREFOX in output:
+        if FIREFOX_APP in output:
             status = True
         return status
 
@@ -149,7 +154,7 @@ class CertHandler(gobject.GObject, Nautilus.MenuProvider):
         else:
             for profile in profiles:
                 if (config.has_option(profile, 'Name') and
-                    config.get(profile, 'Name') == 'firefox-firma'):
+                    config.get(profile, 'Name') == FIREFOX_PROFILE):
                     default = profile
 
         path = config.get(default, 'Path')

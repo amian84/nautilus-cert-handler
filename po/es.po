@@ -18,59 +18,60 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplural=2; plural=(n != 1);\n"
 
-#: nautilus-cert-handler.py:27
+#: scripts/nautilus-cert-handler.py:28
 msgid ""
-"It was not possible install any certificate because firefox is running. "
+"It was not possible install any certificate because firefox is running.\n"
 "Please close Firefox and retry"
 msgstr ""
-"No es posible instalar ningun certificado debido a que Firefox está arrancado."
+"No es posible instalar ningun certificado debido a que Firefox está arrancado.\n"
 "Por favor cierre Firefox e intentelo denuevo"
 
-#: nautilus-cert-handler.py:30
+#: scripts/nautilus-cert-handler.py:31
 msgid "Error"
 msgstr "Error"
 
-#: nautilus-cert-handler.py:50
+#: scripts/nautilus-cert-handler.py:52
 #, python-format
 msgid ""
 "It was not possible to add the certificate %s because the password is not "
 "valid"
-msgstr "No ha sido posible instalar el certificado %s debido a que la contraseña no es valida"
+msgstr ""
+"No ha sido posible instalar el certificado %s debido a que la contraseña no "
+"es valida"
 
-
-#: nautilus-cert-handler.py:53
+#: scripts/nautilus-cert-handler.py:55
 #, python-format
 msgid "Error configuring %s"
 msgstr "Error configurando %s"
 
-#: nautilus-cert-handler.py:60
+#: scripts/nautilus-cert-handler.py:63
 #, python-format
 msgid "The certificate %s has been installed"
 msgstr "El certificado %s ha sido instalado"
 
-#: nautilus-cert-handler.py:61
+#: scripts/nautilus-cert-handler.py:64
 #, python-format
 msgid "Certificate %s installed"
 msgstr "Certificado %s instalado"
 
-#: nautilus-cert-handler.py:84
+#: scripts/nautilus-cert-handler.py:88
 msgid "Install certificate"
 msgstr "Instalar certificado"
 
-#: nautilus-cert-handler.py:85
+#: scripts/nautilus-cert-handler.py:89
 msgid "Install selected certificate file to your Mozilla Firefox"
 msgstr "Instala el certificado seleccionado en el navegador Mozilla Firefox"
 
-#: nautilus-cert-handler.py:93
+#: scripts/nautilus-cert-handler.py:97
 #, python-format
 msgid "Configuring %s"
 msgstr "Configurando %s"
 
-#: nautilus-cert-handler.py:97
+#: scripts/nautilus-cert-handler.py:102
 #, python-format
 msgid "Insert your password to unlock the certificate from file <b>%s</b>"
 msgstr "Inserte la contraseña para desbloquear el certificado del fichero <b>%s</b>"
 
-#: nautilus-cert-handler.py:99
+#: scripts/nautilus-cert-handler.py:104
 msgid "The password is not valid"
 msgstr "La contraseña no es valida"
