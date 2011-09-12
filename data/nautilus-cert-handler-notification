@@ -1,0 +1,7 @@
+Name: nautilus-cert-handler-notification
+Priority: High
+Terminal: False
+DontShowAfterReboot: True
+DisplayIf: true
+Description: Nautilus Certification Handler has been installed. A session restart is needed to make it work properly. Once the session is restarted, a new option will display in nautilus context menu. This option lets you to install certification files.
+Description-es: Nautilus Certification Handler ha sido instalado. Para poder utilizarlo es necesario reiniciar su sesión. Una vez que reinicie la sesión dispondrá de dicha utilidad en el menú contextual de un fichero de certificación.
