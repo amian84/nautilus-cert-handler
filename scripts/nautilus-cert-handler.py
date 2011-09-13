@@ -9,8 +9,8 @@ import ConfigParser
 import tempfile
 from gi.repository import Nautilus, Gtk
 
-FIREFOX_APP  = 'firefox-firma'
-FIREFOX_PROFILE = 'firefox-firma'
+FIREFOX_APP  = 'firefox'
+FIREFOX_PROFILE = 'default'
 PK12UTIL_CMD = '/usr/bin/pk12util'
 SUPPORTED_FORMATS = 'application/x-pkcs12'
 gettext.install("nautilus-cert-handler")
